@@ -6,7 +6,11 @@ import jwt
 from django.http  import JsonResponse
 from django.views import View
 
-from users.models import User
+from users.models    import User
+from wanted.settings import (
+    ALGORITHMS,
+    SECRET_KEY
+)
 
 class UserSignUpView(View) :
     def post(self, request) :
@@ -40,6 +44,38 @@ class UserSignUpView(View) :
 
         except KeyError :
             return JsonResponse({'message' : 'KEY ERROR'}, status=400)
+
+        except AttributeError :
+            return JsonResponse({'message' : 'ATTRIBUTE ERROR'}, status=400)
+
+        except User.DoesNotExist :
+            return JsonResponse({'message' : 'USER MATCHING QUERY DOES NOT EXIST'}, status=400)
+
+class UserSignInView(View) :
+    def post(self, request) :
+        try :
+            data = json.loads(request.body)
+
+            email    = data['email']
+            password = data['password']
+
+            if not User.objects.filter(email=email).exists() :
+                return JsonResponse({'message':'USER_DOES_NOT_EXIST'}, status=401)
+
+            user = User.objects.get(email=email)
+
+            if not bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')) :
+                return JsonResponse({'message' : 'INVALID USER'}, status=401)
+            
+            access_token = jwt.encode({'id' : user.id}, SECRET_KEY, ALGORITHMS)
+
+            return JsonResponse({'access_token' : access_token}, status=200)
+
+        except KeyError :
+            return JsonResponse({'message' : 'KEY ERROR'}, status=400)
+
+        except AttributeError :
+            return JsonResponse({'message' : 'ATTRIBUTE ERROR'}, status=400)
 
         except User.DoesNotExist :
             return JsonResponse({'message' : 'USER MATCHING QUERY DOES NOT EXIST'}, status=400)
