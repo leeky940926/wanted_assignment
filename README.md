@@ -1,4 +1,4 @@
-| Index  | Http Method |  URI            |  Description    |  Request variable  |  Response Status Code   | 작업 브랜치
+| Index  | Http Method |  URI            |  Description    |  Request variable  |  Response Status Code   | Branch
 |:--------:|:-----------:|:----------------:|:----------------:|:----------------:|:----------------:|:------------------------:|
 | 1 |  POST | /users/signup | 회원가입</br>(비밀번호 암호화,이메일과 </br>비밀번호 정규식</br>작성)  | email, password, phone_number, name  | 201 | feature/signup
 | 2 |  POST | /users/signin | 로그인(토큰 발행)  | email, password  | 201 | feature/signin
