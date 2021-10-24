@@ -76,6 +76,3 @@ class UserSignInView(View) :
 
         except AttributeError :
             return JsonResponse({'message' : 'ATTRIBUTE ERROR'}, status=400)
-
-        except User.DoesNotExist :
-            return JsonResponse({'message' : 'USER MATCHING QUERY DOES NOT EXIST'}, status=400)
