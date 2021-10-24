@@ -59,3 +59,12 @@ class PostingView(View) :
         
         except TypeError :
             return JsonResponse({'message': 'TypeError'}, status=400)
+
+    @login_decorator
+    def delete(self, request, posting_id) :
+        try :
+            Posting.objects.filter(id=posting_id).delete()
+            return JsonResponse({'message' : 'Delete Success'}, status=201)
+        
+        except Posting.DoesNotExist :
+            return JsonResponse({'message' : 'Posting matching query does not exist'}, status=401)

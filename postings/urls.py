@@ -5,5 +5,6 @@ from postings.views import (
 )
 
 urlpatterns = [
-    path('', PostingView.as_view())
+    path('', PostingView.as_view()),
+    path('/<int:posting_id>', PostingView.as_view())
 ]
