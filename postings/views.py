@@ -12,16 +12,10 @@ class PostingView(View) :
         try :
             data = json.loads(request.body)
 
-            title      = data['title']
-            content    = data['content']
-            posting_id = data.get('posting_id', None)
+            title   = data['title']
+            content = data['content']
 
-            if posting_id :
-                Posting.objects.filter(id=posting_id).update(title=title, content=content)
-
-                return JsonResponse({'message' : 'update posting'}, status=201)
-
-            Posting.objects.create(title=title, content=content)
+            Posting.objects.create(title=title, content=content, user_id=request.user.id)
 
             return JsonResponse({'message' : 'create new posting'}, status=201)
 
@@ -60,6 +54,34 @@ class PostingView(View) :
         except TypeError :
             return JsonResponse({'message': 'TypeError'}, status=400)
 
+        except Posting.DoesNotExist :
+            return JsonResponse({'message' : 'Posting matching query does not exist'}, status=401)
+
+    @login_decorator
+    def patch(self, request, posting_id) :
+        try :
+            data = json.loads(request.body)
+
+            title   = data.get('title', Posting.objects.get(id=posting_id).title)
+            content = data.get('content', Posting.objects.get(id=posting_id).content)
+
+            Posting.objects.filter(id=posting_id).update(title=title, content=content)
+
+            return JsonResponse({'message' : 'update posting'}, status=201)
+
+        except AttributeError as e :
+            return JsonResponse({'message': 'AttributeError'}, status=400)
+        
+        except TypeError :
+            return JsonResponse({'message': 'TypeError'}, status=400)
+
+        except KeyError : 
+            return JsonResponse({'message': 'KeyError'}, status=400)
+
+        except Posting.DoesNotExist :
+            return JsonResponse({'message' : 'Posting matching query does not exist'}, status=401)
+
+
     @login_decorator
     def delete(self, request, posting_id) :
         try :
@@ -67,4 +89,4 @@ class PostingView(View) :
             return JsonResponse({'message' : 'Delete Success'}, status=201)
         
         except Posting.DoesNotExist :
-            return JsonResponse({'message' : 'Posting matching query does not exist'}, status=401)
+            return JsonResponse({'message' : 'Posting matching query does not exist'}, status=400)
