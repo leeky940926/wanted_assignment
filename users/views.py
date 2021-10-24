@@ -75,4 +75,4 @@ class UserSignInView(View) :
             return JsonResponse({'message' : 'KEY ERROR'}, status=400)
 
         except AttributeError :
-            return JsonResponse({'message' : 'ATTRIBUTE ERROR'}, status=400)
+            return JsonResponse({'message' : 'ATTRIBUTE ERROR'}, status=400) 

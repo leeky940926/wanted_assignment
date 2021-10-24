@@ -32,7 +32,7 @@ class SignUpTest(TestCase) :
         user = {
             'email'    : 'test@gmail.com',
             'password' : 'test1234!'
-        }
+        } 
 
         response = client.post('/users/signup', json.dumps(user), content_type='application/json')
         self.assertEqual(response.status_code,400)
