@@ -2,13 +2,13 @@
 
 위코드 25기로 이번 과정에 참여하게된 이기용입니다.
 
-해당 README.md 파일은 두 가지 목차로 이루어져 있습니다.
+해당 README.md 파일은 구현한 API에 대한 설명을 표로 정리해서 만들었습니다.
 
-1. API명세
 각 API에 대해 표로 정리를 했으며, 구성은 HTTP Method / URI / Description / Request Variable / Response Status Code / Branch 입니다.
 
-2. 추가 상세 설명
-이 부분은 제가 직접 구현한 코드에 대해 어떤 생각을 가지고 작성했는지 기술되어 있습니다.
+코드에 대한 추가 설명은 함께 제출한 PDF파일에 기술되어 있습니다.
+
+읽어주셔서 감사합니다!
 
 <br>
 
