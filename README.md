@@ -14,7 +14,7 @@
 
 | Index  | Http Method |  URI            |  Description    |  Request variable  |  Response Status Code   | Branch
 |:--------:|:-----------:|:----------------:|:----------------:|:----------------:|:----------------:|:------------------------:|
-| 1 |  POST | /users/signup | 회원가입</br>(비밀번호 암호화, 이메일/ 비밀번호 정규식 작성)  | email, password  | 201 | feature/signup
+| 1 |  POST | /users/signup | 회원가입</br>(비밀번호 암호화, 이메일/ 비밀번호 정규식 )  | email, password  | 201 | feature/signup
 | 2 |  POST | /users/signin | 로그인(토큰 발행)  | email, password  | 201 | feature/signin
 | 3 |  POST | /postings | 게시글 작성 | title, content, user_id(유저 고유ID는 토큰으로 식별)  | 201 | feature/postings-c
 | 4 |  GET | /postings | 게시글 조회(offset과 limit을 이용한 Pagination구현 | 없음  | 200 | feature/postings-r
