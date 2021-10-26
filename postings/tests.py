@@ -14,7 +14,7 @@ class PostingTest(TestCase) :
         User.objects.all().delete()
         Posting.objects.all().delete()
     
-    def test_posting_create_success(self) :
+    def test_success_posting_create_success(self) :
         client = Client()
 
         headers = {'HTTP_Authorization' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.zZ8gW9Xqg2Qy4ilOjv1iQWM-XqpaU-AVgVfz7FkUzfQ'}
@@ -33,7 +33,7 @@ class PostingTest(TestCase) :
             }
         )
     
-    def test_posting_create_key_error(self) :
+    def test_success_posting_create_key_error(self) :
         client = Client()
 
         headers = {'HTTP_Authorization' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.zZ8gW9Xqg2Qy4ilOjv1iQWM-XqpaU-AVgVfz7FkUzfQ'}
@@ -50,13 +50,13 @@ class PostingTest(TestCase) :
             'message' : 'KeyError'
         })
 
-    def test_posting_get_list(self) :
+    def test_success_posting_get_list(self) :
         client = Client()
 
         response = client.get('/postings')
         self.assertEqual(response.status_code, 200)
 
-    def test_posting_patch_success(self) :
+    def test_success_posting_patch(self) :
         client = Client()
 
         headers = {'HTTP_Authorization' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.zZ8gW9Xqg2Qy4ilOjv1iQWM-XqpaU-AVgVfz7FkUzfQ'}
@@ -73,7 +73,7 @@ class PostingTest(TestCase) :
             'message' : 'update posting'
         })
     
-    def test_posting_delete_success(self) :
+    def test_success_posting_delete(self) :
         client = Client()
 
         headers = {'HTTP_Authorization' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.zZ8gW9Xqg2Qy4ilOjv1iQWM-XqpaU-AVgVfz7FkUzfQ'}
@@ -85,7 +85,7 @@ class PostingTest(TestCase) :
             'message' : 'Delete Success'
         })
 
-    def test_posting_delete_decode_error(self) :
+    def test_success_posting_delete_decode_error(self) :
         client = Client()
 
         headers = {'HTTP_Authorizations' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.zZ8gW9Xqg2Qy4ilOjv1iQWM-XqpaU-AVgVfz7FkUzfQ'}

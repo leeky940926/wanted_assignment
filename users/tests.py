@@ -13,7 +13,7 @@ class SignUpTest(TestCase) :
     def tearDown(self) :
         User.objects.all().delete()
     
-    def test_sign_up_success(self) :
+    def test_success_sign_up(self) :
         client = Client()
         user = {
             'email'    : 'test@test.com',
@@ -27,7 +27,7 @@ class SignUpTest(TestCase) :
             'message' : 'Success'
         })
     
-    def test_sign_up_duplicated_email_error(self) :
+    def test_success_sign_up_duplicated_email_error(self) :
         client = Client()
         user = {
             'email'    : 'test@gmail.com',
@@ -40,7 +40,7 @@ class SignUpTest(TestCase) :
             'message' : 'EMAIL ALREADY EXISTS'
         })
 
-    def test_sign_up_email_regular_expression_validation_error(self) :
+    def test_success_sign_up_email_regular_expression_validation_error(self) :
         client = Client()
         user = {
             'email'    : 'test',
@@ -53,7 +53,7 @@ class SignUpTest(TestCase) :
             'message' : 'EMAIL VALIDATION ERROR'
         })
     
-    def test_sign_up_password_regular_expression_validation_error(self) :
+    def test_success_sign_up_password_regular_expression_validation_error(self) :
         client = Client()
         user = {
             'email'    : 'test@test.com',
@@ -74,7 +74,7 @@ class SigninTest(TestCase) :
     def tearDown(self) :
         User.objects.all().delete()
     
-    def test_sign_in_success(self) :
+    def test_success_sign_in_success(self) :
         client = Client()
         login_info = {
             'email'    : 'test@gmail.com',
@@ -87,7 +87,7 @@ class SigninTest(TestCase) :
             'access_token' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.zZ8gW9Xqg2Qy4ilOjv1iQWM-XqpaU-AVgVfz7FkUzfQ'
         })
     
-    def test_sign_in_email_not_exist_error(self) :
+    def test_success_sign_in_email_not_exist_error(self) :
         client = Client()
         login_info = {
             'email'    : 'dddd',
